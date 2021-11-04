@@ -1,5 +1,6 @@
 import Phoenix from "./lib/Phoenix/Phoenix";
 import Player from "./lib/Player/Player";
+import Enemy from "./lib/Enemy/Enemy";
 
 const dk = new Player("dark_knight", 100, true);
 
@@ -21,3 +22,15 @@ phoenix.addKill();
 phoenix.addKill();
 console.log("-");
 phoenix.getInfo();
+console.log("------------------------");
+console.log("------------------------");
+console.log("------------------------");
+console.log("------------------------");
+
+const bob = new Enemy("Robert", 3394485577);
+
+bob.printName();
+console.log("---");
+bob.changeNameAndSsn("Jane", 1102293384);
+console.log("---");
+bob.printName();
