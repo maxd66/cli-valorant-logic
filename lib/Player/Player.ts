@@ -46,10 +46,6 @@ class Player {
     const r: number = Math.floor(Math.random() * arr.length);
     return arr[r];
   }
-
-  generateHTML(agent: string): string {
-    return `<h1>Selected Agent: ${agent}</h1>`;
-  }
 }
 
 export default Player;
