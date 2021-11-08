@@ -37,28 +37,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var Player_1 = require("./lib/Player/Player");
+var HTML_1 = require("./lib/HTML/HTML");
+var fs = require("fs");
 var player1 = new Player_1["default"]();
-var getAgentHTML = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var agent, html;
+var htmlClass = new HTML_1["default"]();
+var getAgent = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var agent;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, player1.inquirePlayer()];
             case 1:
                 agent = _a.sent();
-                html = player1.generateHTML(agent);
-                console.log(html);
-                return [2 /*return*/, html];
+                return [2 /*return*/, agent];
         }
     });
 }); };
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var agentHtml;
+    var agent, genHTML;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getAgentHTML()];
+            case 0: return [4 /*yield*/, getAgent()];
             case 1:
-                agentHtml = _a.sent();
-                console.log(agentHtml);
+                agent = _a.sent();
+                genHTML = htmlClass.writePage(agent);
+                try {
+                    fs.writeFileSync("./public/index.html", genHTML);
+                }
+                catch (e) {
+                    console.log(e);
+                }
                 return [2 /*return*/];
         }
     });

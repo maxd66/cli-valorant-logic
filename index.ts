@@ -1,6 +1,6 @@
 import Player from "./lib/Player/Player";
 import HTML from "./lib/HTML/HTML";
-import fs from "fs";
+import * as fs from "fs";
 
 const player1 = new Player();
 const htmlClass = new HTML();
