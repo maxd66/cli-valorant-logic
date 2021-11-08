@@ -1,25 +1,54 @@
+import * as inquirer from "inquirer";
+
 class Player {
-  username: string;
-  killCount: number;
-  radiant: boolean;
+  agents: string[];
 
-  constructor(name: string, kills: number, radiant: boolean) {
-    this.username = name;
-    this.killCount = kills;
-    this.radiant = radiant;
+  constructor() {
+    this.agents = [
+      "Astra",
+      "Brimstone",
+      "Breach",
+      "Cypher",
+      "Jett",
+      "Kay/O",
+      "Killjoy",
+      "Omen",
+      "Phoenix",
+      "Raze",
+      "Reyna",
+      "Sage",
+      "Skye",
+      "Sova",
+      "Viper",
+      "Yoru",
+    ];
+  }
+  async inquirePlayer(): Promise<string> {
+    const options: object[] = this.agents.map((val) => {
+      return { name: val, value: val, checked: true };
+    });
+    let ans: string = ``;
+    await inquirer
+      .prompt([
+        {
+          name: "test",
+          message: "this is a test",
+          type: "checkbox",
+          choices: options,
+        },
+      ])
+      .then((answers) => {
+        ans = this.randomize(answers.test);
+      });
+    return ans;
+  }
+  private randomize(arr: string[]): string {
+    const r: number = Math.floor(Math.random() * arr.length);
+    return arr[r];
   }
 
-  getInfo(): void {
-    console.log(
-      `${this.username} has killed ${this.killCount} other players, and ${
-        this.radiant ? "is" : "is not"
-      } radiant.`
-    );
-  }
-
-  addKill(): void {
-    console.log("Boom Headshot!");
-    this.killCount++;
+  generateHTML(agent: string): string {
+    return `<h1>Selected Agent: ${agent}</h1>`;
   }
 }
 

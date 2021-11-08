@@ -1,36 +1,22 @@
-import Phoenix from "./lib/Phoenix/Phoenix";
 import Player from "./lib/Player/Player";
-import Enemy from "./lib/Enemy/Enemy";
+import fs from "fs";
 
-const dk = new Player("dark_knight", 100, true);
+const player1 = new Player();
 
-const leviathon = new Player("leviathon", 50, false);
+const getAgentHTML = async (): Promise<string> => {
+  const agent = await player1.inquirePlayer();
+  const html: string = player1.generateHTML(agent);
+  return html;
+};
 
-const phoenix = new Phoenix(dk.username, 101, dk.radiant);
+const main = async (): Promise<void> => {
+  const agentHtml = await getAgentHTML();
+  console.log(agentHtml);
+  try {
+    fs.writeFileSync("index.html", agentHtml);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-dk.getInfo();
-console.log("-");
-leviathon.getInfo();
-console.log("-");
-dk.addKill();
-console.log("-");
-dk.getInfo();
-console.log("-");
-phoenix.listPowers();
-console.log("-");
-phoenix.addKill();
-phoenix.addKill();
-console.log("-");
-phoenix.getInfo();
-console.log("------------------------");
-console.log("------------------------");
-console.log("------------------------");
-console.log("------------------------");
-
-const bob = new Enemy("Robert", 3394485577);
-
-bob.printName();
-console.log("---");
-bob.changeNameAndSsn("Jane", 1102293384);
-console.log("---");
-bob.printName();
+main();
