@@ -1,6 +1,6 @@
 # cli-valorant-logic
 
-Command line that mocks the logic I want to achieve in Valorant Random
+Command line that mocks the logic I want to achieve in Valorant Random and generates a webpage based on your choices.
 
 ## The Interface
 

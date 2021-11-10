@@ -31,14 +31,15 @@ class Player {
     await inquirer
       .prompt([
         {
-          name: "test",
-          message: "this is a test",
+          name: "agent",
+          message:
+            "Please choose agents you would like to include in the random selection. (All are selected by default)",
           type: "checkbox",
           choices: options,
         },
       ])
       .then((answers) => {
-        ans = this.randomize(answers.test);
+        ans = this.randomize(answers.agent);
       });
     return ans;
   }

@@ -1,6 +1,7 @@
 class HTML {
-  writePage(agent: string): string {
+  writePage(agent: string, map: string): string {
     return `<!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -12,6 +13,7 @@ class HTML {
       <body>
         <h1>Hey this is ValoRandom</h1>
         <h2>Your selected agent is ${agent}.</h2>
+        <h2>Your selected map is ${map}.</h2>
         <script src="./script/script.js"></script>
       </body>
     </html>

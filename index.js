@@ -39,7 +39,9 @@ exports.__esModule = true;
 var Player_1 = require("./lib/Player/Player");
 var HTML_1 = require("./lib/HTML/HTML");
 var fs = require("fs");
+var Match_1 = require("./lib/Match/Match");
 var player1 = new Player_1["default"]();
+var match = new Match_1["default"]();
 var htmlClass = new HTML_1["default"]();
 var getAgent = function () { return __awaiter(void 0, void 0, void 0, function () {
     var agent;
@@ -52,14 +54,28 @@ var getAgent = function () { return __awaiter(void 0, void 0, void 0, function (
         }
     });
 }); };
+var getMap = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var map;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, match.inquireMap()];
+            case 1:
+                map = _a.sent();
+                return [2 /*return*/, map];
+        }
+    });
+}); };
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var agent, genHTML;
+    var agent, map, genHTML;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, getAgent()];
             case 1:
                 agent = _a.sent();
-                genHTML = htmlClass.writePage(agent);
+                return [4 /*yield*/, getMap()];
+            case 2:
+                map = _a.sent();
+                genHTML = htmlClass.writePage(agent, map);
                 try {
                     fs.writeFileSync("./public/index.html", genHTML);
                 }
