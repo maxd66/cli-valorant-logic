@@ -20,13 +20,10 @@ const getMap = async (): Promise<string> => {
 
 const main = async (): Promise<void> => {
   const agent = await getAgent();
-  console.log("Picking Random Agent...");
 
   const map = await getMap();
-  console.log("Generating the best strategies...");
 
   const genMD = mdClass.writeMD(agent, map);
-  console.log("Generating markdown...");
 
   try {
     fs.writeFileSync("../public/markdown/valorandom.md", genMD);

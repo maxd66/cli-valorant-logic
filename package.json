@@ -9,7 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ts": "tsc index.ts && npm run js",
-    "js": "node index.js"
+    "js": "node index.js",
+    "markdown": "cd alternates/ && tsc markdownGen.ts && npm run markdownjs",
+    "markdownjs": "cd alternates/ && node markdownGen.js && cd .."
   },
   "repository": {
     "type": "git",

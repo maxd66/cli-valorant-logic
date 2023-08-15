@@ -39,8 +39,12 @@ class Player {
         },
       ])
       .then((answers) => {
+        console.log("---Picking Random Agent...\n");
         ans = this.randomize(answers.agent);
       });
+    if (ans) {
+      console.log("---Random agent selected!\n");
+    }
     return ans;
   }
   private randomize(arr: string[]): string {

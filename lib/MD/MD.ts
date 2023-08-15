@@ -1,5 +1,6 @@
 class MD {
   writeMD(agent: string, map: string): string {
+    console.log("---Generating markdown...\n");
     return `# ValoRandom Markdown Page
 This is a Markdown file that can be generated from this project by running the markdown script.
         

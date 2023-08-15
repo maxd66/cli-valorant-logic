@@ -20,13 +20,10 @@ const getMap = async (): Promise<string> => {
 
 const main = async (): Promise<void> => {
   const agent = await getAgent();
-  console.log("Picking Random Agent...");
 
   const map = await getMap();
-  console.log("Generating the best strategies...");
 
   const genHTML = htmlClass.writePage(agent, map);
-  console.log("Generating website...");
 
   try {
     fs.writeFileSync("./public/index.html", genHTML);

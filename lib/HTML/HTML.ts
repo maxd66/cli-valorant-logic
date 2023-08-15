@@ -1,5 +1,6 @@
 class HTML {
   writePage(agent: string, map: string): string {
+    console.log("---Generating website...\n");
     return `<!DOCTYPE html>
     <!DOCTYPE html>
     <html lang="en">

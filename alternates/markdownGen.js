@@ -36,66 +36,59 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var inquirer = require("inquirer");
-var Player = /** @class */ (function () {
-    function Player() {
-        this.agents = [
-            "Astra",
-            "Brimstone",
-            "Breach",
-            "Cypher",
-            "Jett",
-            "Kay/O",
-            "Killjoy",
-            "Omen",
-            "Phoenix",
-            "Raze",
-            "Reyna",
-            "Sage",
-            "Skye",
-            "Sova",
-            "Viper",
-            "Yoru",
-        ];
-    }
-    Player.prototype.inquirePlayer = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var options, ans;
-            var _this = this;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        options = this.agents.map(function (val) {
-                            return { name: val, value: val, checked: true };
-                        });
-                        ans = "";
-                        return [4 /*yield*/, inquirer
-                                .prompt([
-                                {
-                                    name: "agent",
-                                    message: "Please choose agents you would like to include in the random selection. (All are selected by default)",
-                                    type: "checkbox",
-                                    choices: options
-                                },
-                            ])
-                                .then(function (answers) {
-                                console.log("---Picking Random Agent...\n");
-                                ans = _this.randomize(answers.agent);
-                            })];
-                    case 1:
-                        _a.sent();
-                        if (ans) {
-                            console.log("---Random agent selected!\n");
-                        }
-                        return [2 /*return*/, ans];
+var fs = require("fs");
+var Player_1 = require("../lib/Player/Player");
+var Match_1 = require("../lib/Match/Match");
+var MD_1 = require("../lib/MD/MD");
+var player1 = new Player_1["default"]();
+var match = new Match_1["default"]();
+var mdClass = new MD_1["default"]();
+var getAgent = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var agent;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, player1.inquirePlayer()];
+            case 1:
+                agent = _a.sent();
+                return [2 /*return*/, agent];
+        }
+    });
+}); };
+var getMap = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var map;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, match.inquireMap()];
+            case 1:
+                map = _a.sent();
+                return [2 /*return*/, map];
+        }
+    });
+}); };
+var main = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var agent, map, genMD;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getAgent()];
+            case 1:
+                agent = _a.sent();
+                console.log("Picking Random Agent...");
+                return [4 /*yield*/, getMap()];
+            case 2:
+                map = _a.sent();
+                console.log("Generating the best strategies...");
+                genMD = mdClass.writeMD(agent, map);
+                console.log("Generating markdown...");
+                try {
+                    fs.writeFileSync("../public/markdown/valorandom.md", genMD);
+                    console.log("Markdown generated!!! Find it in the public/markdown folder, it is titled valorandom.md");
                 }
-            });
-        });
-    };
-    Player.prototype.randomize = function (arr) {
-        var r = Math.floor(Math.random() * arr.length);
-        return arr[r];
-    };
-    return Player;
-}());
-exports["default"] = Player;
+                catch (e) {
+                    console.log("Oh no there was a problem generating your markdown.");
+                    console.log(e);
+                }
+                return [2 /*return*/];
+        }
+    });
+}); };
+main();

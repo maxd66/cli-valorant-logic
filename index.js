@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+var fs = require("fs");
 var Player_1 = require("./lib/Player/Player");
 var HTML_1 = require("./lib/HTML/HTML");
-var fs = require("fs");
 var Match_1 = require("./lib/Match/Match");
 var player1 = new Player_1["default"]();
 var match = new Match_1["default"]();
@@ -78,8 +78,10 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 genHTML = htmlClass.writePage(agent, map);
                 try {
                     fs.writeFileSync("./public/index.html", genHTML);
+                    console.log("Website generated!!! Find it in the public folder, it is titled index.html");
                 }
                 catch (e) {
+                    console.log("Oh no there was a problem generating your website.");
                     console.log(e);
                 }
                 return [2 /*return*/];

@@ -26,6 +26,9 @@ class Match {
     ]).then((answers) => {
       chosenMap = answers.map;
     });
+    if (chosenMap) {
+      console.log("---Map locked in!\n");
+    }
     return chosenMap;
   }
 }
